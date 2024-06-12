@@ -2,12 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Job } from './entities/job.entity';
-import { RedisService } from '@nestjs/redis';
-import { RedisClientType } from 'redis';
-
+import { RedisService,  } from '@liaoliaots/nestjs-redis';
+import Redis from 'ioredis';
 @Injectable()
 export class JobService {
-  private redisClient: RedisClientType;
+  private redisClient: Redis;
 
   constructor(
     @InjectRepository(Job) private jobRepository: Repository<Job>,

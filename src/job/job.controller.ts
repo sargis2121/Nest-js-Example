@@ -19,11 +19,11 @@ export class JobController {
   @Post()
   async create(
     @Body('clientId') clientId: string,
-    @Headers('x-api-key') apiKey: string,
+    // @Headers('x-api-key') apiKey: string,
   ) {
-    if (apiKey !== this.configService.get<string>('API_KEY')) {
-      throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
-    }
+    // if (apiKey !== this.configService.get<string>('API_KEY')) {
+    //   throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
+    // }
     return this.jobService.create(clientId);
   }
 }
