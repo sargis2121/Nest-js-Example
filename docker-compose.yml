@@ -41,6 +41,17 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
 
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - '8081:80'
+    depends_on:
+      - nest-app
+
 volumes:
   postgres-data:
   pgadmin-data:
