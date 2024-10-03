@@ -9,6 +9,7 @@ import { randomGeo, randomColor, randomModel, randomType } from '../utils';
 export class CarSeedService implements OnModuleInit {
   private readonly BATCH_SIZE = 10000;
   private readonly PROGRESS_INTERVAL = 100000; // Log progress every 100,000 cars
+  private readonly TOTAL_CARS_TO_SEED = 5000000;
 
   constructor(
     @InjectRepository(Car)
@@ -70,11 +71,10 @@ export class CarSeedService implements OnModuleInit {
 
   async onModuleInit() {
     const carCount = await this.carRepository.count();
-    const totalCarsToSeed = 5000000;
 
     if (carCount === 0) {
       this.loggerService.log('No data found, seeding 5 million cars on init.');
-      await this.seedCars(totalCarsToSeed);
+      await this.seedCars(this.TOTAL_CARS_TO_SEED);
     } else {
       this.loggerService.log(
         `Data already seeded. Current car count: ${carCount}`,
